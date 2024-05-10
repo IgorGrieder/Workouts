@@ -1,16 +1,17 @@
 'use client'
 
-import Footer from "@/components/footer"
-import Header from "@/components/header"
-import WorkoutMain from "@/components/workoutmain"
+import Footer from '@/components/footer'
+import Header from '@/components/header'
+import WorkoutMain from '@/components/workoutmain'
+import ExerciseReducer from '@/contexts/exerciseReducer'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white overflow-scroll">
+    <div className="min-h-screen overflow-scroll bg-white">
       <Header></Header>
-      <main>
+      <ExerciseReducer>
         <WorkoutMain></WorkoutMain>
-      </main>
+      </ExerciseReducer>
       <Footer></Footer>
     </div>
   )
