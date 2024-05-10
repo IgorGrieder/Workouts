@@ -10,6 +10,7 @@ const WorkoutMain = () => {
 
       {/* Workout display area */}
       <section>
+        {/* Iterate on all workouts */}
         <Workout></Workout>
       </section>
     </div>

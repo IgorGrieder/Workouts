@@ -1,4 +1,7 @@
 export type exercise = {
-  reps: number
-  weight: number
+  name: string
+  track: {
+    reps: number[]
+    weight: number[]
+  }
 }

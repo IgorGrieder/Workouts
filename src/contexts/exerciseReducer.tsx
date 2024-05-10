@@ -1,12 +1,5 @@
+import { exercise } from '@/types/types'
 import { createContext, Dispatch, ReactNode, useReducer } from 'react'
-
-type exercise = {
-  name: string
-  track: {
-    reps: number[]
-    weight: number[]
-  }
-}
 
 type context = {
   exerciseRed: exercise[]
