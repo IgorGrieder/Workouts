@@ -7,7 +7,7 @@ import WorkoutsReducer from '@/contexts/workoutsReducer'
 
 export default function Home() {
   return (
-    <div className="min-h-screen overflow-scroll bg-white">
+    <div className="flex min-h-screen flex-col overflow-scroll bg-white">
       <Header></Header>
       <WorkoutsReducer>
         <WorkoutMain></WorkoutMain>
