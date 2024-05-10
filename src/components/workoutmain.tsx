@@ -1,9 +1,12 @@
-import { useContext } from 'react'
 import Workout from './workout'
+import { useContext, useState } from 'react'
 import { workoutContext } from '@/contexts/workoutsReducer'
+import ExerciseReducer from '@/contexts/exerciseReducer'
+import Modal from './modal'
 
 const WorkoutMain = () => {
-  const workoutCtx = useContext(workoutContext)
+  const workoutCtx = useContext(workoutContext) // contexto que contem os treinos
+  const [showModal, setShowModal] = useState(false) // state variable que controla exibicao do modal ou nao
 
   return (
     <div className="px-5 py-10 text-black">
@@ -14,7 +17,7 @@ const WorkoutMain = () => {
 
       {/* Workout display area */}
       <section>
-        {/* Iterate on all workouts */}
+        {/* Exibicao de todos os treinos */}
         {workoutCtx?.workoutList.map((item, index) => {
           return (
             <Workout
@@ -26,6 +29,13 @@ const WorkoutMain = () => {
           )
         })}
       </section>
+
+      {/* Modal area */}
+      {showModal && (
+        <ExerciseReducer>
+          <Modal></Modal>
+        </ExerciseReducer>
+      )}
     </div>
   )
 }
