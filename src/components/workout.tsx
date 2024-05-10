@@ -1,13 +1,28 @@
-import { exerciseContext } from '@/contexts/exerciseReducer'
-import { useContext } from 'react'
+import { exercise } from '@/types/types'
+import WorkoutLine from './workoutline'
 
-const Workout = () => {
-  const exerciseCtx = useContext(exerciseContext)
+type Props = {
+  date: string
+  trainingName: string
+  workoutTable: exercise[]
+}
+
+const Workout = ({ date, trainingName, workoutTable }: Props) => {
   return (
     <div>
-      <h1>Nome exercicio</h1>
-      {/* fazer a utilizacao do reducer para exibir os items*/}
-      {exerciseCtx?.exerciseRed.map((item, key) => <div>item</div>)}
+      <h1>
+        {trainingName} - {date}
+      </h1>
+      {workoutTable.map((item, index) => {
+        return (
+          <WorkoutLine
+            exercise={item.name}
+            reps={item.track.reps}
+            weight={item.track.weight}
+            key={index}
+          ></WorkoutLine>
+        )
+      })}
     </div>
   )
 }

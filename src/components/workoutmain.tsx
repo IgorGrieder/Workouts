@@ -1,6 +1,10 @@
+import { useContext } from 'react'
 import Workout from './workout'
+import { workoutContext } from '@/contexts/workoutsReducer'
 
 const WorkoutMain = () => {
+  const workoutCtx = useContext(workoutContext)
+
   return (
     <div className="px-5 py-10 text-black">
       <h1 className="text-center md:text-3xl">Workout Area</h1>
@@ -11,7 +15,16 @@ const WorkoutMain = () => {
       {/* Workout display area */}
       <section>
         {/* Iterate on all workouts */}
-        <Workout></Workout>
+        {workoutCtx?.workoutList.map((item, index) => {
+          return (
+            <Workout
+              date={item.date}
+              trainingName={item.trainingName}
+              workoutTable={item.workoutTable}
+              key={index}
+            ></Workout>
+          )
+        })}
       </section>
     </div>
   )

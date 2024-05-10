@@ -1,30 +1,19 @@
-import { exercise } from '@/types/types'
-
 type Props = {
   exercise: string
-  exerciseTrack: exercise[]
+  reps: number[]
+  weight: number[]
 }
 
-const WorkoutLine = ({ exercise, exerciseTrack }: Props) => {
+const WorkoutLine = ({ exercise, reps, weight }: Props) => {
   return (
-    <div className="flex items-center justify-around border-b-2 border-black text-black">
+    <div className="flex items-center justify-around border-b-2 border-black px-4 py-2 text-black">
       <h1>{exercise}</h1>
-      {exerciseTrack.map((item, key) => {
+      {/* iterando durante um array para poder retornar em sequencia reps - peso*/}
+      {reps.map((item, index) => {
         return (
-          <>
-            <div
-              className="flex items-center justify-center border-l-2 border-black"
-              key={key}
-            >
-              {item.reps}
-            </div>
-            <div
-              className="flex items-center justify-center border-l-2 border-black"
-              key={key}
-            >
-              {item.weight}
-            </div>
-          </>
+          <div key={index} className="border-r-2 border-black">
+            {item} - {weight[index]}Kg
+          </div>
         )
       })}
     </div>
