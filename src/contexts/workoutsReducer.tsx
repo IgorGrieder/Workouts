@@ -2,12 +2,14 @@ import { exercise } from '@/types/types'
 import { createContext, Dispatch, ReactNode, useReducer } from 'react'
 
 type workout = {
+  trainingName: string
+  date: string
   workoutTable: exercise[]
 }
 
 type addAction = {
   type: 'add'
-  payload: exercise[]
+  payload: workout
 }
 
 type Action = addAction
@@ -17,14 +19,14 @@ type context = {
   dispatch: Dispatch<Action>
 }
 
-// workout[] eh um array que tem diversos workouts table, cada um com seu exercise[] que dita os exercicios, suas reps e pesos de reps!
+// workout[] eh um array que tem diversos treinos (com nome,data e exericicios),
+//cada um com seu exercise[] que dita os exercicios, suas reps e pesos de reps!
+
 const handleReducer = (list: workout[], action: Action) => {
   switch (action.type) {
     case 'add':
-      const updatedWorkout: workout = {
-        workoutTable: [...list[0]?.workoutTable, ...action.payload],
-      }
-      return [updatedWorkout]
+      const newWorkout: workout[] = [...list, action.payload]
+      return newWorkout
     default:
       return list
   }
