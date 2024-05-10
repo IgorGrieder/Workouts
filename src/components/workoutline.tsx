@@ -2,6 +2,7 @@ type Props = {
   exercise: string
   reps: number[]
   weight: number[]
+  key: number
 }
 
 const WorkoutLine = ({ exercise, reps, weight }: Props) => {

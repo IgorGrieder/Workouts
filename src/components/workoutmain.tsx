@@ -33,7 +33,11 @@ const WorkoutMain = () => {
       {/* Modal area */}
       {showModal && (
         <ExerciseReducer>
-          <Modal></Modal>
+          <Modal
+            setModalFalse={() => {
+              setShowModal(false)
+            }}
+          ></Modal>
         </ExerciseReducer>
       )}
     </div>

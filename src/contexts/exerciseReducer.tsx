@@ -11,7 +11,11 @@ type addAction = {
   payload: exercise
 }
 
-type Action = addAction
+type resetAction = {
+  type: 'reset'
+}
+
+type Action = addAction | resetAction
 
 const handleReducer = (list: exercise[], action: Action) => {
   switch (action.type) {
@@ -24,6 +28,9 @@ const handleReducer = (list: exercise[], action: Action) => {
         },
       }
       return [...list, newElement]
+    case 'reset':
+      const emptyArray: exercise[] = []
+      return emptyArray
     default:
       return list
   }
