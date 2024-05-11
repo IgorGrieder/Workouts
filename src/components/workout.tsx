@@ -8,11 +8,20 @@ type Props = {
 }
 
 const Workout = ({ date, trainingName, workoutTable }: Props) => {
+  // modificando a data para exeibicao em dia/mes/ano
+  const data = date.split('-').reverse().join('/')
+
   return (
     <div>
       <h1>
-        {trainingName} - {date}
+        {trainingName} - {data}
       </h1>
+
+      <div className="grid grid-cols-2 py-4">
+        <h1 className="border-r border-black text-center">Exercise</h1>
+        <h1 className="text-center">Reps and weights track</h1>
+      </div>
+
       {workoutTable.map((item, index) => {
         return (
           <WorkoutLine

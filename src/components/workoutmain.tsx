@@ -24,17 +24,23 @@ const WorkoutMain = () => {
 
       {/* Workout display area */}
       <section>
-        {/* Exibicao de todos os treinos */}
-        {workoutCtx?.workoutList.map((item, index) => {
-          return (
-            <Workout
-              date={item.date}
-              trainingName={item.trainingName}
-              workoutTable={item.workoutTable}
-              key={index}
-            ></Workout>
-          )
-        })}
+        {/* Exibicao de todos os treinos em ordem cronológica*/}
+        {workoutCtx?.workoutList
+          .sort((a, b) => {
+            const item1 = parseInt(a.date.split('-').join(''))
+            const item2 = parseInt(b.date.split('-').join(''))
+            return item1 - item2
+          })
+          .map((item, index) => {
+            return (
+              <Workout
+                date={item.date}
+                trainingName={item.trainingName}
+                workoutTable={item.workoutTable}
+                key={index}
+              ></Workout>
+            )
+          })}
       </section>
 
       {/* Modal area */}

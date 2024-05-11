@@ -12,7 +12,7 @@ const Modal = ({ setModalFalse }: Props) => {
   const exerciseCtx = useContext(exerciseContext) // contexto que contem os exercicios a serem adicionados
   const workoutCtx = useContext(workoutContext) // contexto que contem os treinos
   const [inputExercise, setInputExercise] = useState('') // variavel state que controle o input do exercicio a ser adicionado
-  const [inputDate, setInputDate] = useState('DD/MM/AAAA') // variavel state que controle o input da data
+  const [inputDate, setInputDate] = useState('') // variavel state que controle o input da data
   const [inputTraining, setInputTraining] = useState('') // variavel state que controle o input do nome do treino
 
   // event handler de add click
@@ -30,8 +30,8 @@ const Modal = ({ setModalFalse }: Props) => {
           payload: {
             name: inputExercise,
             track: {
-              reps: [0],
-              weight: [0],
+              reps: [],
+              weight: [],
             },
           },
         })
@@ -64,14 +64,27 @@ const Modal = ({ setModalFalse }: Props) => {
 
   return (
     <section className="fixed inset-0 flex items-center justify-center overflow-y-scroll bg-black/70">
-      <div className="flex flex-col items-center rounded-3xl border border-red-400 bg-white px-10 py-8 md:h-[600px] md:w-[800px]">
+      <div className="flex flex-col items-center rounded-3xl border border-red-400 bg-white px-10 py-8 md:h-[650px] md:w-[800px]">
         <div className="flex w-full items-center justify-center">
           <h1 className="flex-1 text-center text-3xl">Workout Time!</h1>
           <button
             className="absolute px-4 py-2 text-3xl text-red-400 lg:left-[1060px]"
             onClick={handleCloseClick}
           >
-            X
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+              />
+            </svg>
           </button>
         </div>
 
@@ -115,8 +128,14 @@ const Modal = ({ setModalFalse }: Props) => {
         </div>
 
         {/* exibindo cada exercicio que for adicionado ao treino dentro do modal*/}
-        <div className="mt-5 overflow-y-scroll">
-          <h1 className="text-2xl text-black">Exercises</h1>
+        <div className="mt-5 w-full overflow-y-scroll py-5">
+          <h1 className="text-center text-2xl text-black">Workout</h1>
+
+          <div className="grid grid-cols-2 py-4">
+            <h1 className="border-r border-black text-center">Exercise</h1>
+            <h1 className="text-center">Reps and weights track</h1>
+          </div>
+
           {exerciseCtx?.exerciseRed.map((item, index) => {
             return (
               <WorkoutLine
