@@ -128,7 +128,7 @@ const Modal = ({ setModalFalse }: Props) => {
         </div>
 
         {/* exibindo cada exercicio que for adicionado ao treino dentro do modal*/}
-        <div className="mt-5 w-full overflow-y-scroll py-5">
+        <div className="mt-5 flex w-full flex-col overflow-y-scroll py-5">
           <h1 className="text-center text-2xl text-black">Workout</h1>
 
           <div className="grid grid-cols-2 py-4">
@@ -142,6 +142,7 @@ const Modal = ({ setModalFalse }: Props) => {
                 exercise={item.name}
                 reps={item.track.reps}
                 weight={item.track.weight}
+                index={index}
                 key={index}
               ></WorkoutLine>
             )
