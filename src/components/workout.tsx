@@ -28,7 +28,8 @@ const Workout = ({ date, trainingName, workoutTable }: Props) => {
             exercise={item.name}
             reps={item.track.reps}
             weight={item.track.weight}
-            key={index}
+            index={index}
+            key={crypto.randomUUID()}
           ></WorkoutLine>
         )
       })}

@@ -37,22 +37,25 @@ const WorkoutMain = () => {
                 date={item.date}
                 trainingName={item.trainingName}
                 workoutTable={item.workoutTable}
-                key={index}
+                key={crypto.randomUUID()}
               ></Workout>
             )
           })}
       </section>
 
       {/* Modal area */}
-      {showModal && (
-        <ExerciseReducer>
-          <Modal
-            setModalFalse={() => {
-              setShowModal(false)
-            }}
-          ></Modal>
-        </ExerciseReducer>
-      )}
+      <ExerciseReducer>
+        <>
+          {showModal && (
+            <Modal
+              key={crypto.randomUUID()}
+              setModalFalse={() => {
+                setShowModal(false)
+              }}
+            ></Modal>
+          )}
+        </>
+      </ExerciseReducer>
     </div>
   )
 }

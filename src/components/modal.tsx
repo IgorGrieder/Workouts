@@ -1,5 +1,5 @@
 import { exerciseContext } from '@/contexts/exerciseReducer'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import WorkoutLine from './workoutline'
 import { exercises } from '@/data/data'
 import { workoutContext } from '@/contexts/workoutsReducer'
@@ -143,7 +143,7 @@ const Modal = ({ setModalFalse }: Props) => {
                 reps={item.track.reps}
                 weight={item.track.weight}
                 index={index}
-                key={index}
+                key={crypto.randomUUID()}
               ></WorkoutLine>
             )
           })}

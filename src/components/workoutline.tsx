@@ -1,5 +1,4 @@
-import { exerciseContext } from '@/contexts/exerciseReducer'
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import ModalRounds from './modalRounds'
 
 type Props = {
@@ -27,7 +26,7 @@ const WorkoutLine = ({ exercise, reps, weight, index }: Props) => {
         {/* iterando durante um array para poder retornar em sequencia reps - peso*/}
         {reps.map((item, index) => {
           return (
-            <div key={index} className="text-center">
+            <div key={crypto.randomUUID()} className="text-center">
               {item} - {weight[index]}Kg
             </div>
           )
@@ -76,6 +75,7 @@ const WorkoutLine = ({ exercise, reps, weight, index }: Props) => {
         {/* Modal de add reps*/}
         {showAddArea && (
           <ModalRounds
+            key={crypto.randomUUID()}
             index={index}
             removeAddArea={() => {
               setShowAddArea(false)
