@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import ModalRounds from './modalRounds'
+import { exerciseContext } from '@/contexts/exerciseReducer'
 
 type Props = {
   exercise: string
@@ -12,9 +13,19 @@ type Props = {
 // e invocar o dispatch com type 'addRound'
 const WorkoutLine = ({ exercise, reps, weight, index }: Props) => {
   const [showAddArea, setShowAddArea] = useState(false) // variavel de state para exibir modal de reps e weights
-
+  const exerciseCtx = useContext(exerciseContext) // variavel de contexto de exercicios
   const handleAddRound = () => {
     setShowAddArea(true) // abrindo modal de reps e weights
+  }
+
+  const handleRemoveExercise = () => {
+    console.log(index)
+    exerciseCtx?.dispatch({
+      type: 'removeExercise',
+      payload: {
+        id: index,
+      },
+    })
   }
 
   return (
@@ -53,7 +64,7 @@ const WorkoutLine = ({ exercise, reps, weight, index }: Props) => {
               </button>
             </div>
             <div className="flex">
-              <button>
+              <button onClick={handleRemoveExercise}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

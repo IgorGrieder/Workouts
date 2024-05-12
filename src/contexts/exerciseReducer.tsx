@@ -24,7 +24,14 @@ type addRound = {
   }
 }
 
-type Action = addAction | resetAction | addRound
+type removeExercise = {
+  type: 'removeExercise'
+  payload: {
+    id: number
+  }
+}
+
+type Action = addAction | resetAction | addRound | removeExercise
 
 const handleReducer = (list: exercise[], action: Action) => {
   switch (action.type) {
@@ -47,6 +54,11 @@ const handleReducer = (list: exercise[], action: Action) => {
         return item
       })
       return newList
+    case 'removeExercise':
+      const newListRemoved = list.filter(
+        (item, index) => index !== action.payload.id,
+      )
+      return newListRemoved
     case 'reset':
       const emptyArray: exercise[] = []
       return emptyArray
