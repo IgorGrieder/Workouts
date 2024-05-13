@@ -9,8 +9,6 @@ type Props = {
   index: number
 }
 
-// adicionar uma mini telinha para ser aberta apos a o ultimo round com dois inputs, um para reps e outro para weights que ira fazer a mudanca
-// e invocar o dispatch com type 'addRound'
 const WorkoutLine = ({ exercise, reps, weight, index }: Props) => {
   const [showAddArea, setShowAddArea] = useState(false) // variavel de state para exibir modal de reps e weights
   const exerciseCtx = useContext(exerciseContext) // variavel de contexto de exercicios
@@ -19,7 +17,6 @@ const WorkoutLine = ({ exercise, reps, weight, index }: Props) => {
   }
 
   const handleRemoveExercise = () => {
-    console.log(index)
     exerciseCtx?.dispatch({
       type: 'removeExercise',
       payload: {

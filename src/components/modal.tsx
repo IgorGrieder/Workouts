@@ -17,44 +17,63 @@ const Modal = ({ setModalFalse }: Props) => {
 
   // event handler de add click
   const handleAddClick = () => {
+    // caso input nao seja vazio
     if (inputExercise !== '') {
-      // caso input nao seja vazio
-      const index = exercises.findIndex(
-        (item) => item.exercise === inputExercise,
-      )
-      if (index !== -1) {
-        // caso ache o index do elemento
-        // adicionando o exercicio com reps e weight zerado, possibilitando o próprio usuário preencher os dados
-        exerciseCtx?.dispatch({
-          type: 'add',
-          payload: {
-            name: inputExercise,
-            track: {
-              reps: [],
-              weight: [],
+      // caso o exercicio ja nao tenha sido adicionado na lista
+      if (
+        exerciseCtx?.exerciseRed.findIndex(
+          (item) => item.name === inputExercise,
+        ) === -1
+      ) {
+        const index = exercises.findIndex(
+          (item) => item.exercise === inputExercise,
+        )
+        if (index !== -1) {
+          // caso ache o index do elemento
+          // adicionando o exercicio com reps e weight zerado, possibilitando o próprio usuário preencher os dados
+          exerciseCtx?.dispatch({
+            type: 'add',
+            payload: {
+              name: inputExercise,
+              track: {
+                reps: [],
+                weight: [],
+              },
             },
-          },
-        })
+          })
+        } else {
+          alert('Digite um exercício válido!')
+        }
       } else {
-        alert('Digite um exercício válido!')
+        alert('Exercício ja foi adicionado no treino!')
       }
     }
+    // resetando o campo
+    setInputExercise('')
   }
 
   // event handler de add workout
   const handleAddWorkout = () => {
-    workoutCtx?.dispatch({
-      // enviando as informacoes para workout table
-      type: 'add',
-      payload: {
-        trainingName: inputTraining,
-        date: inputDate,
-        workoutTable: exerciseCtx?.exerciseRed ?? [],
-      },
-    })
+    // caso tenham sido preenchidos corretamente os campos e exercise list nao seja vazia
+    if (
+      inputDate !== '' &&
+      inputTraining !== '' &&
+      exerciseCtx?.exerciseRed.length
+    ) {
+      workoutCtx?.dispatch({
+        // enviando as informacoes para workout table
+        type: 'add',
+        payload: {
+          trainingName: inputTraining,
+          date: inputDate,
+          workoutTable: exerciseCtx?.exerciseRed ?? [],
+        },
+      })
 
-    // resetando os exercicios em exerciseCtx
-    exerciseCtx?.dispatch({ type: 'reset' })
+      // resetando os exercicios em exerciseCtx e fechando o modal
+      exerciseCtx?.dispatch({ type: 'reset' })
+      setModalFalse()
+    }
   }
 
   const handleCloseClick = () => {
