@@ -30,7 +30,9 @@ const WorkoutLine = ({ exercise, reps, weight, index }: Props) => {
       <h1>{exercise}</h1>
       <div className="grid grid-cols-1">
         {/* exibicao de mensagem caso tenha sido adicionado recentemente um exercicio*/}
-        {reps.length === 0 && <p className="text-center">Add a round!</p>}
+        {reps.length === 0 && (
+          <p className="text-center">Adicione uma série!</p>
+        )}
         {/* iterando durante um array para poder retornar em sequencia reps - peso*/}
         {reps.map((item, index) => {
           return (

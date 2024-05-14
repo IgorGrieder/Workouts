@@ -23,7 +23,7 @@ const WorkoutMain = () => {
       </button>
 
       {/* Workout display area */}
-      <section>
+      <section className="mt-5 grid grid-cols-1 items-start gap-8 px-5 md:grid-cols-2">
         {/* Exibicao de todos os treinos em ordem cronológica*/}
         {workoutCtx?.workoutList
           .sort((a, b) => {

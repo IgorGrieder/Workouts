@@ -35,6 +35,7 @@ const Modal = ({ setModalFalse }: Props) => {
             type: 'add',
             payload: {
               name: inputExercise,
+              group: exercises[index].group,
               track: {
                 reps: [],
                 weight: [],
@@ -71,8 +72,7 @@ const Modal = ({ setModalFalse }: Props) => {
       })
 
       // resetando os exercicios em exerciseCtx e fechando o modal
-      exerciseCtx?.dispatch({ type: 'reset' })
-      setModalFalse()
+      handleCloseClick()
     }
   }
 
@@ -142,17 +142,17 @@ const Modal = ({ setModalFalse }: Props) => {
             className="border border-black px-4 py-2 text-black"
             onClick={handleAddClick}
           >
-            Add exercise
+            Adicionar exercício
           </button>
         </div>
 
         {/* exibindo cada exercicio que for adicionado ao treino dentro do modal*/}
         <div className="mt-5 flex w-full flex-col overflow-y-scroll py-5">
-          <h1 className="text-center text-2xl text-black">Workout</h1>
+          <h1 className="text-center text-2xl text-black">Treino</h1>
 
           <div className="grid grid-cols-2 py-4">
-            <h1 className="border-r border-black text-center">Exercise</h1>
-            <h1 className="text-center">Reps and weights track</h1>
+            <h1 className="border-r border-black text-center">Exercícios</h1>
+            <h1 className="text-center">Repetições e peso</h1>
           </div>
 
           {exerciseCtx?.exerciseRed.map((item, index) => {
@@ -172,7 +172,7 @@ const Modal = ({ setModalFalse }: Props) => {
           className="mt-auto border border-black px-4 py-2 text-black"
           onClick={handleAddWorkout}
         >
-          Add workout
+          Adicionar treino
         </button>
       </div>
     </section>

@@ -38,6 +38,7 @@ const handleReducer = (list: exercise[], action: Action) => {
     case 'add':
       const newElement = {
         name: action.payload.name,
+        group: action.payload.group,
         track: {
           reps: action.payload.track.reps,
           weight: action.payload.track.weight,
