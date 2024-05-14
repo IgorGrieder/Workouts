@@ -4,10 +4,14 @@ import { workoutContext } from '@/contexts/workoutsReducer'
 import ExerciseReducer from '@/contexts/exerciseReducer'
 import Modal from './modal'
 
-const WorkoutMain = () => {
+type Props = {
+  id: number
+  setId: (int: number) => void
+}
+
+const WorkoutMain = ({ id, setId }: Props) => {
   const workoutCtx = useContext(workoutContext) // contexto que contem os treinos
   const [showModal, setShowModal] = useState(false) // state variable que controla exibicao do modal ou nao
-  const [id, setId] = useState(0) // variavel state que ira controlar o id dos treinos
 
   const handleAddNew = () => {
     setShowModal(true)
@@ -24,7 +28,7 @@ const WorkoutMain = () => {
       </button>
 
       {/* Workout display area */}
-      <section className="mt-5 grid grid-cols-1 items-start gap-8 px-5 md:grid-cols-2">
+      <section className="mt-5 grid grid-cols-1 items-start gap-8 overflow-y-scroll px-5 md:grid-cols-2">
         {/* Exibicao de todos os treinos em ordem cronológica*/}
         {workoutCtx?.workoutList
           .sort((a, b) => {
