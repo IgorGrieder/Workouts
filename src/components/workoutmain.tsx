@@ -7,6 +7,7 @@ import Modal from './modal'
 const WorkoutMain = () => {
   const workoutCtx = useContext(workoutContext) // contexto que contem os treinos
   const [showModal, setShowModal] = useState(false) // state variable que controla exibicao do modal ou nao
+  const [id, setId] = useState(0) // variavel state que ira controlar o id dos treinos
 
   const handleAddNew = () => {
     setShowModal(true)
@@ -31,13 +32,14 @@ const WorkoutMain = () => {
             const item2 = parseInt(b.date.split('-').join(''))
             return item1 - item2
           })
-          .map((item, index) => {
+          .map((item) => {
             return (
               <Workout
                 date={item.date}
                 trainingName={item.trainingName}
                 workoutTable={item.workoutTable}
                 key={crypto.randomUUID()}
+                id={item.id}
               ></Workout>
             )
           })}
@@ -52,6 +54,8 @@ const WorkoutMain = () => {
               setModalFalse={() => {
                 setShowModal(false)
               }}
+              id={id}
+              setId={setId}
             ></Modal>
           )}
         </>

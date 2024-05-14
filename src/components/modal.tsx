@@ -5,10 +5,12 @@ import { exercises } from '@/data/data'
 import { workoutContext } from '@/contexts/workoutsReducer'
 
 type Props = {
+  id: number
+  setId: (int: number) => void
   setModalFalse: () => void
 }
 
-const Modal = ({ setModalFalse }: Props) => {
+const Modal = ({ setModalFalse, id, setId }: Props) => {
   const exerciseCtx = useContext(exerciseContext) // contexto que contem os exercicios a serem adicionados
   const workoutCtx = useContext(workoutContext) // contexto que contem os treinos
   const [inputExercise, setInputExercise] = useState('') // variavel state que controle o input do exercicio a ser adicionado
@@ -65,13 +67,15 @@ const Modal = ({ setModalFalse }: Props) => {
         // enviando as informacoes para workout table
         type: 'add',
         payload: {
+          id,
           trainingName: inputTraining,
           date: inputDate,
           workoutTable: exerciseCtx?.exerciseRed ?? [],
         },
       })
 
-      // resetando os exercicios em exerciseCtx e fechando o modal
+      // resetando os exercicios em exerciseCtx, incrementando id e fechando o modal
+      setId(id + 1)
       handleCloseClick()
     }
   }

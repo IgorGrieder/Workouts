@@ -5,6 +5,7 @@ type workout = {
   trainingName: string
   date: string
   workoutTable: exercise[]
+  id: number
 }
 
 type addAction = {
@@ -12,7 +13,14 @@ type addAction = {
   payload: workout
 }
 
-type Action = addAction
+type removeAction = {
+  type: 'remove'
+  payload: {
+    id: number
+  }
+}
+
+type Action = addAction | removeAction
 
 type context = {
   workoutList: workout[]
@@ -27,6 +35,11 @@ const handleReducer = (list: workout[], action: Action) => {
     case 'add':
       const newWorkout: workout[] = [...list, action.payload]
       return newWorkout
+    case 'remove':
+      const newWorkoutRemoved = list.filter(
+        (item) => item.id !== action.payload.id,
+      )
+      return newWorkoutRemoved
     default:
       return list
   }
