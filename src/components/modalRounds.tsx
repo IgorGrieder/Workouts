@@ -33,23 +33,23 @@ const ModalRounds = ({ removeAddArea, index }: Props) => {
   }
 
   return (
-    <div className="mt-3 grid grid-cols-2 gap-3">
+    <div className="relative right-1/2 mt-3 grid gap-3 sm:static sm:grid-cols-2">
       <input
         type="number"
-        className="flex-1 border border-black px-4 py-2 text-black outline-none"
+        className="w-full border border-black px-4 py-2 text-black outline-none sm:w-auto sm:flex-1"
         value={inputReps}
         onChange={(event) => setInputReps(event.target.value)}
         placeholder="Repetições"
       />
       <input
         type="number"
-        className="flex-1 border border-black px-4 py-2 text-black outline-none"
+        className="w-full border border-black px-4 py-2 text-black outline-none sm:w-auto sm:flex-1"
         value={inputWeights}
         onChange={(event) => setInputWeights(event.target.value)}
         placeholder="Peso (Kg)"
       />
       <button
-        className="col-span-2 border border-black px-4 py-2 text-black"
+        className="border border-black px-4 py-2 text-black sm:col-span-2"
         onClick={handleAddInfo}
       >
         Adicionar série ✓
