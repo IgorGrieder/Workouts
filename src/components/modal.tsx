@@ -1,8 +1,9 @@
 import { exerciseContext } from '@/contexts/exerciseReducer'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import WorkoutLine from './workoutline'
 import { exercises } from '@/data/data'
 import { workoutContext } from '@/contexts/workoutsReducer'
+import SearchBar from './searchBar'
 
 type Props = {
   id: number
@@ -16,6 +17,21 @@ const Modal = ({ setModalFalse, id, setId }: Props) => {
   const [inputExercise, setInputExercise] = useState('') // variavel state que controle o input do exercicio a ser adicionado
   const [inputDate, setInputDate] = useState('') // variavel state que controle o input da data
   const [inputTraining, setInputTraining] = useState('') // variavel state que controle o input do nome do treino
+  const [showBar, setShowBar] = useState(false) // variavel state que controla exibicao ou nao do menu de opcoes
+
+  // use effect para controlar showBar baseado nas mudancas de inputExercise
+  useEffect(() => {
+    if (inputExercise !== '') {
+      // caso o campo esteja preenchido e tenha um match exato na busca em si no dataArray
+      if (
+        exercises.findIndex((item) => item.exercise === inputExercise) !== -1
+      ) {
+        setShowBar(false)
+      } else {
+        setShowBar(true)
+      }
+    } else setShowBar(false)
+  }, [inputExercise])
 
   // event handler de add click
   const handleAddClick = () => {
@@ -134,20 +150,33 @@ const Modal = ({ setModalFalse, id, setId }: Props) => {
         </div>
 
         <h1 className="mt-5 text-left text-xl">Adicionar exercício</h1>
-        <div className="flex w-full items-center justify-center gap-5 border-b border-black py-5">
-          <input
-            type="text"
-            className="border border-black px-4 py-2 text-black outline-none"
-            value={inputExercise}
-            onChange={(event) => setInputExercise(event.target.value)}
-            placeholder="Exercício"
-          />
-          <button
-            className="border border-black px-4 py-2 text-black"
-            onClick={handleAddClick}
-          >
-            Adicionar exercício
-          </button>
+        <div className="grid w-full grid-cols-1 border-b border-black py-5">
+          <div className="grid grid-cols-3">
+            <input
+              type="text"
+              className="col-span-2 border border-black px-4 py-2 text-black outline-none"
+              value={inputExercise}
+              onChange={(event) => setInputExercise(event.target.value)}
+              onKeyDown={() => {
+                focus()
+              }}
+              placeholder="Exercício"
+            />
+            <button
+              className="ml-5 border border-black px-4 py-2 text-black"
+              onClick={handleAddClick}
+            >
+              Adicionar exercício
+            </button>
+          </div>
+          {inputExercise !== '' && showBar && (
+            <SearchBar
+              input={inputExercise}
+              setInputExercise={setInputExercise}
+              setShowBar={setShowBar}
+              key={crypto.randomUUID()}
+            ></SearchBar>
+          )}
         </div>
 
         {/* exibindo cada exercicio que for adicionado ao treino dentro do modal*/}
