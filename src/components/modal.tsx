@@ -89,7 +89,7 @@ const Modal = ({ setModalFalse, id, setId }: Props) => {
     <section className="fixed inset-0 flex items-center justify-center overflow-y-scroll bg-black/70">
       <div className="flex flex-col items-center rounded-3xl border border-red-400 bg-white px-10 py-8 md:h-[650px] md:w-[800px]">
         <div className="flex w-full items-center justify-center">
-          <h1 className="flex-1 text-center text-3xl">Workout Time!</h1>
+          <h1 className="flex-1 text-center text-3xl">Hora de treinar!</h1>
           <button
             className="absolute px-4 py-2 text-3xl text-red-400 lg:left-[1060px]"
             onClick={handleCloseClick}
@@ -112,7 +112,7 @@ const Modal = ({ setModalFalse, id, setId }: Props) => {
         </div>
 
         <div className="w-full border-b border-black py-3">
-          <h1 className="mb-3 text-xl">Workout data</h1>
+          <h1 className="mb-3 text-xl">Informações do treino</h1>
           <div className="flex items-center gap-2">
             <input
               type="text"
@@ -133,7 +133,7 @@ const Modal = ({ setModalFalse, id, setId }: Props) => {
           </div>
         </div>
 
-        <h1 className="mt-5 text-left text-xl">Add exercise</h1>
+        <h1 className="mt-5 text-left text-xl">Adicionar exercício</h1>
         <div className="flex w-full items-center justify-center gap-5 border-b border-black py-5">
           <input
             type="text"
