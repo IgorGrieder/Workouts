@@ -26,7 +26,7 @@ const Workout = ({ date, trainingName, workoutTable, id }: Props) => {
   }
 
   return (
-    <div className="rounded-md border border-black bg-red-400 p-5">
+    <div className="rounded-md border border-black bg-red-400 px-2 py-5">
       <div className="flex items-center border-b border-gray-700 py-3">
         <span className="text-xl font-semibold">{trainingName}</span>
         <div className="ml-auto inline-flex items-center gap-3">
@@ -49,11 +49,15 @@ const Workout = ({ date, trainingName, workoutTable, id }: Props) => {
       </div>
 
       <div className="grid grid-cols-5 border-b border-black py-4">
-        <h1 className="text-center">Grupamento</h1>
+        <h1 className="text-center">
+          {window.innerWidth > 620 ? 'Grupamento' : 'Grupo'}
+        </h1>
         <h1 className="col-span-2 border-x border-black text-center">
           Exercícios
         </h1>
-        <h1 className="col-span-2 text-center">Repetições e peso</h1>
+        <h1 className="col-span-2 text-center">
+          {window.innerWidth > 620 ? 'Repetições e peso' : 'Reps e peso'}
+        </h1>
       </div>
 
       {workoutTable.map((item) => {
